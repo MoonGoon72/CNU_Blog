@@ -3,22 +3,32 @@ import { getPostList } from '../api';
 import PostListItem from '../components/PostListItem';
 import { IResponsePostList } from '../api/types';
 import NoPostList from '../components/NoPostList';
+import useGetPostList from '../queries/useGetPostList';
 
 const Home = () => {
-  const [postList, setPostList] = useState<IResponsePostList>([]);
+  // const [postList, setPostList] = useState<IResponsePostList>([]);
+  const { data: postList = [], isError, isLoading } = useGetPostList();
 
-  const fetchPostList = async () => {
-    const { data } = await getPostList();
-    setPostList(data);
-  };
+  // const fetchPostList = async () => {
+  //   const { data } = await getPostList();
+  //   data.reverse();
+  //   setPostList(data);
+  // };
 
-  useEffect(() => {
-    fetchPostList();
-  }, []);
+  // useEffect(() => {
+  //   fetchPostList();
+  // }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  if (postList.length === 0) {
+  if (postList.length === 0 || isError) {
     return <NoPostList />;
   }
+
+  // if (postList.length === 0) {
+  //   return <NoPostList />;
+  // }
 
   return (
     <div>
