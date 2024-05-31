@@ -65,8 +65,8 @@ const Layout = () => {
           />
         </div>
         <div>
-          <Name>수정</Name>
-          <Description>2024 실전코딩</Description>
+          <Name>MoonGoon72</Name>
+          <Description>MoonGoon blog</Description>
         </div>
       </Profile>
       <Nav>
